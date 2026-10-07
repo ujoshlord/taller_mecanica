@@ -9,6 +9,10 @@ from .deps import get_current_user
 
 router = APIRouter(prefix="/usuarios", tags=["usuarios"])
 
+@router.get('/me', response_model=UsuarioSchema)
+def read_usuario_me(current_user = Depends(get_current_user)):
+    return current_user
+    
 @router.get("/", response_model=List[UsuarioSchema])
 def read_usuarios(skip: int = 0, limit: int = 100, db: Session = Depends(get_db), current_user = Depends(get_current_user)):
     return db.query(Usuario).offset(skip).limit(limit).all()
