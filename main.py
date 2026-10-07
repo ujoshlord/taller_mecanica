@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from routers import auth, personas, roles, usuarios, vehiculos, productos, consultas, ventas
 
 app = FastAPI(title="API Taller Mecánico")
